@@ -178,3 +178,145 @@ body {
     cursor: none;
   }
 }
+
+/* full-screen curtain preloader — two panels meet in the middle and split apart
+   on exit, like stage curtains opening onto the hero underneath */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+}
+
+.preloader-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: var(--bg);
+  transition: transform 0.95s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader-panel--top {
+  top: 0;
+}
+
+.preloader-panel--bottom {
+  bottom: 0;
+}
+
+.preloader--exit .preloader-panel--top {
+  transform: translateY(-100%);
+}
+
+.preloader--exit .preloader-panel--bottom {
+  transform: translateY(100%);
+}
+
+.preloader-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.35rem;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.preloader--exit .preloader-content {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+/* light burst emanating from behind the mark as it appears */
+.preloader-burst {
+  position: absolute;
+  width: min(70vw, 460px);
+  height: min(70vw, 460px);
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--text) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  animation: preloader-burst 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes preloader-burst {
+  0% {
+    transform: scale(0);
+    opacity: 0.85;
+  }
+  55% {
+    opacity: 0.28;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.preloader-mark-text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  color: var(--text);
+  opacity: 0;
+  letter-spacing: 0.7em;
+  transform: scale(0.88);
+  animation: preloader-mark-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes preloader-mark-in {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.7em;
+    transform: scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0.02em;
+    transform: scale(1);
+  }
+}
+
+.preloader-mark-dot {
+  color: var(--accent);
+}
+
+.preloader-line {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(34vw, 160px);
+  height: 2px;
+  background: var(--text-faint);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  animation: preloader-line-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
+}
+
+@keyframes preloader-line-in {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-burst,
+  .preloader-mark-text,
+  .preloader-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

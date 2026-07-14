@@ -7,6 +7,7 @@ import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import SectionNav from "@/components/SectionNav";
 import PopIt from "@/components/PopIt";
+import Preloader from "@/components/Preloader";
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/seo";
 
 const spaceGrotesk = Space_Grotesk({
@@ -94,6 +95,7 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} themes={["light", "dark"]}>
           <I18nProvider>
+            <Preloader />
             <div className="noise-overlay" />
             <ScrollProgress />
             <CustomCursor />
