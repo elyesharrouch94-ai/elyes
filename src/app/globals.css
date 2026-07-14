@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #06070a;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f2f3f5;
+  --text-dim: #9aa0ac;
+  --text-faint: #5c6270;
+  --accent: #ffffff;
+  --accent-2: #c7c7c7;
+  --accent-glow: rgba(255, 255, 255, 0.22);
+  --on-accent: #0a0a0a;
+  --elevated: #14151a;
+  --scrim: rgba(0, 0, 0, 0.035);
+  --name-shadow: 0 2px 24px rgba(0, 0, 0, 0.65), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+:root.light {
+  --bg: #f7f6f3;
+  --surface: rgba(10, 8, 6, 0.035);
+  --surface-hover: rgba(10, 8, 6, 0.065);
+  --border: rgba(10, 8, 6, 0.1);
+  --text: #14130f;
+  --text-dim: #55534c;
+  --text-faint: #8a877d;
+  --accent: #0a0a0a;
+  --accent-2: #3d3b36;
+  --accent-glow: rgba(10, 8, 6, 0.16);
+  --on-accent: #ffffff;
+  --elevated: #ffffff;
+  --scrim: rgba(0, 0, 0, 0.03);
+  --name-shadow: 0 2px 24px rgba(255, 255, 255, 0.75), 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-text-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-on-accent: var(--on-accent);
+  --color-elevated: var(--elevated);
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+
+  /* shadcn-style semantic aliases, mapped onto the palette above */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--text-faint);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  scroll-snap-type: y proximity;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: clip;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
+
+.logo-marquee {
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+/* logo assets are pre-baked solid white; invert them to read on a light background */
+:root.light .logo-mark {
+  filter: invert(1);
+}
+
+/* hero subtitle/lead text sitting over the dark portrait reads better in full white
+   on the dark theme; the light theme keeps its original dimmer gray */
+.hero-subtext {
+  color: var(--text);
+}
+
+:root.light .hero-subtext {
+  color: var(--text-dim);
+}
+
+/* soft pool of the page background behind the hero subtitle/lead text — fades out at
+   the edges so it reads as atmosphere rather than a card, but gives that text a calm,
+   consistent backdrop instead of whatever part of the photo (light skin or dark hair/
+   sweater) happens to sit behind it, which is what made a single flat text color
+   unreliable there */
+.hero-text-scrim {
+  background: var(--bg);
+  opacity: 0.72;
+  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 50%, black 42%, transparent 100%);
+  mask-image: radial-gradient(ellipse 78% 82% at 50% 50%, black 42%, transparent 100%);
+}
+
+/* full-color logos that read poorly on the dark theme's dark bg; force them to a
+   white silhouette there, keep original colors on the light theme */
+.logo-force-white {
+  filter: brightness(0) invert(1);
+}
+:root.light .logo-force-white {
+  filter: none;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:root.light .noise-overlay {
+  opacity: 0.02;
+  mix-blend-mode: multiply;
+}
+
+@media (pointer: fine) {
+  .cursor-hide {
+    cursor: none;
+  }
+}
