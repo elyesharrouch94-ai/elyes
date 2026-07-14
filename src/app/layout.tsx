@@ -8,6 +8,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import SectionNav from "@/components/SectionNav";
 import PopIt from "@/components/PopIt";
 import Preloader from "@/components/Preloader";
+import BackToTop from "@/components/BackToTop";
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/seo";
 
 const spaceGrotesk = Space_Grotesk({
@@ -102,6 +103,7 @@ export default function RootLayout({
             <SectionNav />
             {children}
             <PopIt />
+            <BackToTop />
           </I18nProvider>
         </ThemeProvider>
       </body>

@@ -13,7 +13,16 @@ import {
 export type Lang = "en" | "fr";
 
 export type StaticDict = {
-  nav: { about: string; work: string; services: string; contact: string; getInTouch: string };
+  nav: {
+    about: string;
+    work: string;
+    services: string;
+    contact: string;
+    getInTouch: string;
+    openMenu: string;
+    closeMenu: string;
+    backToTop: string;
+  };
   sectionNav: { home: string; about: string; work: string; services: string; contact: string };
   hero: {
     availability: string;
@@ -87,7 +96,16 @@ export type StaticDict = {
 };
 
 const en: StaticDict = {
-  nav: { about: "About", work: "Work", services: "Services", contact: "Contact", getInTouch: "Get in touch" },
+  nav: {
+    about: "About",
+    work: "Work",
+    services: "Services",
+    contact: "Contact",
+    getInTouch: "Get in touch",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    backToTop: "Back to top",
+  },
   sectionNav: { home: "Home", about: "About", work: "Work", services: "Services", contact: "Contact" },
   hero: {
     availability: "Montréal, QC · Canada & worldwide",
@@ -172,7 +190,16 @@ const en: StaticDict = {
 };
 
 const fr: StaticDict = {
-  nav: { about: "Profil", work: "Réalisations", services: "Services", contact: "Contact", getInTouch: "Me contacter" },
+  nav: {
+    about: "Profil",
+    work: "Réalisations",
+    services: "Services",
+    contact: "Contact",
+    getInTouch: "Me contacter",
+    openMenu: "Ouvrir le menu",
+    closeMenu: "Fermer le menu",
+    backToTop: "Remonter en haut",
+  },
   sectionNav: { home: "Accueil", about: "Profil", work: "Réalisations", services: "Services", contact: "Contact" },
   hero: {
     availability: "Montréal, QC · Canada et à l'international",

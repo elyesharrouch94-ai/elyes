@@ -28,7 +28,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-12 transition-all duration-400 ${
+        className={`fixed top-0 left-0 right-0 z-[110] flex items-center justify-between px-6 md:px-12 transition-all duration-400 ${
           scrolled ? "py-3.5 bg-bg/70 backdrop-blur-xl border-b border-border" : "py-5.5"
         }`}
       >
@@ -64,23 +64,35 @@ export default function Navbar() {
           </MagneticLink>
 
           <button
-            className="md:hidden flex flex-col gap-1.5 z-[101]"
-            aria-label="Menu"
+            className="md:hidden relative flex items-center justify-center w-11 h-11 rounded-full border border-border bg-surface z-[101]"
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             onClick={() => setMenuOpen((v) => !v)}
             data-cursor-hover
           >
-            <motion.span
-              className="w-6 h-0.5 bg-text rounded-full"
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
-            />
-            <motion.span
-              className="w-6 h-0.5 bg-text rounded-full"
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-            />
-            <motion.span
-              className="w-6 h-0.5 bg-text rounded-full"
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
-            />
+            <motion.svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="absolute"
+              animate={{ opacity: menuOpen ? 0 : 1, scale: menuOpen ? 0.6 : 1 }}
+              transition={{ duration: 0.2 }}
+              aria-hidden
+            >
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </motion.svg>
+            <motion.svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="absolute"
+              animate={{ opacity: menuOpen ? 1 : 0, scale: menuOpen ? 1 : 0.6, rotate: menuOpen ? 0 : -90 }}
+              transition={{ duration: 0.2 }}
+              aria-hidden
+            >
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </motion.svg>
           </button>
         </div>
       </nav>
