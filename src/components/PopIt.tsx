@@ -1,8 +1,12 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+
+const HINT_SESSION_KEY = "popit-hint-shown";
+const HINT_SHOW_DELAY = 2500;
+const HINT_AUTO_HIDE = 6000;
 
 const ROWS = 4;
 const COLS = 5;
@@ -37,9 +41,25 @@ function playPop(pressed: boolean) {
 export default function PopIt() {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const [hintVisible, setHintVisible] = useState(false);
   const [popped, setPopped] = useState<boolean[]>(() => Array(TOTAL).fill(false));
   const allPopped = popped.every(Boolean);
   const panelId = useId();
+
+  useEffect(() => {
+    if (sessionStorage.getItem(HINT_SESSION_KEY)) return;
+    const showTimer = setTimeout(() => {
+      sessionStorage.setItem(HINT_SESSION_KEY, "1");
+      setHintVisible(true);
+    }, HINT_SHOW_DELAY);
+    return () => clearTimeout(showTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!hintVisible) return;
+    const hideTimer = setTimeout(() => setHintVisible(false), HINT_AUTO_HIDE);
+    return () => clearTimeout(hideTimer);
+  }, [hintVisible]);
 
   const toggle = (i: number) => {
     setPopped((prev) => {
@@ -55,14 +75,44 @@ export default function PopIt() {
 
   return (
     <>
+      <AnimatePresence>
+        {hintVisible && !open && (
+          <motion.div
+            initial={{ opacity: 0, x: -10, scale: 0.92 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -10, scale: 0.92 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-8 left-[5.5rem] z-[140] flex items-center gap-1.5 pl-3.5 pr-2 py-2 rounded-full border border-border bg-elevated shadow-[0_12px_32px_-12px_rgba(0,0,0,0.5)]"
+          >
+            <span className="text-sm font-medium whitespace-nowrap">{t.popit.title}</span>
+            <button
+              type="button"
+              onClick={() => setHintVisible(false)}
+              data-cursor-hover
+              aria-label={t.popit.close}
+              className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-text-faint hover:text-text hover:bg-surface transition-colors"
+            >
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          setOpen((v) => !v);
+          setHintVisible(false);
+        }}
         data-cursor-hover
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={t.popit.title}
         whileTap={{ scale: 0.9 }}
+        animate={hintVisible ? { scale: [1, 1.08, 1] } : {}}
+        transition={hintVisible ? { duration: 0.6, repeat: 2, repeatDelay: 0.4 } : undefined}
         className="fixed bottom-6 left-6 z-[140] w-14 h-14 rounded-full border border-border bg-surface backdrop-blur-xl flex items-center justify-center shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)] hover:border-accent/50 transition-colors"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>

@@ -335,16 +335,16 @@ const workItemsFr: Record<string, Partial<Pick<WorkItem, "title" | "description"
     tags: ["Vidéo", "Design graphique", "Couverture d'événement"],
   },
   "sadio-doumbia": {
-    title: "Contenu vidéo pour Sadio Doumbia, joueur Top 10 ATP Race en double",
+    title: "Gestion d'image pour Sadio Doumbia, joueur Top 10 ATP Race en double",
     description:
-      "Production vidéo sociale pour un joueur Top 10 ATP Race en double : temps forts de match et séances d'entraînement captés et montés pour développer sa marque personnelle sur le circuit.",
-    tags: ["Vidéo", "Sport", "Marque personnelle"],
+      "Gestion d'image continue pour un joueur Top 10 ATP Race en double : production vidéo et photo, activation de partenariats et stratégie de marque personnelle sur le circuit.",
+    tags: ["Vidéo", "Photographie", "Partenariats"],
   },
   "girasole-energies": {
-    title: "Vidéo de marque pour Girasole Energies",
+    title: "Gestion de marque & d'image pour Girasole Energies",
     description:
-      "Production vidéo par drone et sur site pour une entreprise d'énergie solaire, mettant en valeur les installations et deux ans de partenariat avec une identité visuelle sobre et corporate.",
-    tags: ["Vidéo", "Drone", "Énergie"],
+      "Gestion de marque de bout en bout pour une entreprise d'énergie solaire : publicité payante, print, réseaux sociaux et couverture d'événements, sous une identité visuelle cohérente.",
+    tags: ["Branding", "Publicité", "Réseaux sociaux"],
   },
   "hecomment-shorts": {
     title: "Des accroches courtes qui ont dépassé les 100K vues",

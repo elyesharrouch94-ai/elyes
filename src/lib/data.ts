@@ -221,20 +221,20 @@ export const workItems: WorkItem[] = [
     id: "sadio-doumbia",
     category: "content",
     client: "Sadio Doumbia",
-    title: "Video Content for Sadio Doumbia, Top 10 ATP Race Doubles Player",
+    title: "Image Management for Sadio Doumbia, Top 10 ATP Race Doubles Player",
     description:
-      "Social video production for a Top 10 ATP Race doubles player: match highlights and training footage captured and edited to grow his personal brand on tour.",
-    tags: ["Video", "Sports", "Personal Brand"],
+      "Ongoing image management for a Top 10 ATP Race doubles player: video and photo production, partnership activation, and personal brand strategy on tour.",
+    tags: ["Video", "Photography", "Partnerships"],
     video: { src: "/work/sadio-doumbia.mp4", poster: "/work/sadio-doumbia-poster.jpg" },
   },
   {
     id: "girasole-energies",
     category: "content",
     client: "Girasole Energies",
-    title: "Brand Video for Girasole Energies",
+    title: "Brand & Image Management for Girasole Energies",
     description:
-      "Drone and on-site video production for a solar energy company, showcasing installations and two years of partnership in a clean, corporate-grade visual identity.",
-    tags: ["Video", "Drone", "Energy"],
+      "End-to-end brand management for a solar energy company: paid ads, print, social media and event coverage, all under one consistent visual identity.",
+    tags: ["Branding", "Ads", "Social Media"],
     video: {
       src: "/work/girasole-energies.mp4",
       poster: "/work/girasole-energies-poster.jpg",

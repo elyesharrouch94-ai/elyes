@@ -50,8 +50,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2.5">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 md:gap-2.5">
             <LanguageToggle />
             <ThemeToggle />
           </div>
@@ -116,10 +116,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="flex items-center gap-4 mt-4">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
