@@ -8,7 +8,6 @@ export type ClientLogo = {
 };
 
 export const clientLogos: ClientLogo[] = [
-  { name: "Airbus", file: "/logos/airbus.png", ratio: 1905 / 400 },
   { name: "Capgemini Engineering", file: "/logos/capgemini-engineering.png", ratio: 2926 / 400 },
   { name: "Skywise", file: "/logos/skywise.png", ratio: 1413 / 400 },
   { name: "Carlos", file: "/logos/carlos.png", ratio: 1450 / 400, whiteOnDark: true },
