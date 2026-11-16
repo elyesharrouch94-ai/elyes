@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
@@ -10,18 +9,6 @@ import PopIt from "@/components/PopIt";
 import Preloader from "@/components/Preloader";
 import BackToTop from "@/components/BackToTop";
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/seo";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -87,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-bg text-text antialiased cursor-hide">
         <script
           type="application/ld+json"

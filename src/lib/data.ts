@@ -199,6 +199,7 @@ export const workItems: WorkItem[] = [
       "/work/yallah-habibi-02.jpg",
       "/work/yallah-habibi-03.jpg",
       "/work/yallah-habibi-04.jpg",
+      "/work/yallah-habibi-05.jpg",
     ],
     video: { src: "/work/yallah-habibi.mp4", poster: "/work/yallah-habibi-poster.jpg" },
   },
@@ -234,6 +235,7 @@ export const workItems: WorkItem[] = [
     description:
       "End-to-end brand management for a solar energy company: paid ads, print, social media and event coverage, all under one consistent visual identity.",
     tags: ["Branding", "Ads", "Social Media"],
+    images: ["/work/girasole-energies-01.jpg"],
     video: {
       src: "/work/girasole-energies.mp4",
       poster: "/work/girasole-energies-poster.jpg",
